@@ -1,19 +1,18 @@
-document.addEventListener("DOMContentLoaded", (event) => {
-    console.log("DOM fully loaded and parsed");
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registration-form');
+    const feedbackDiv = document.getElementById('form-feedback');
 
-    let form = document.getElementById("registration-form"); 
-    let feedbackDiv = document.getElementById("form-feedback"); 
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting to the server
 
-    form.addEventListener("submit",(e)=>{
-        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
 
-        let username = document.getElementById("username").value.trim(); 
-        let password =document.getElementById("password").value.trim(); 
-        let email = document.getElementById("email").value.trim() ; 
-        let isValid  = true; 
-        let messages  = [] ; 
-    
+        let isValid = true;
+        let messages = [];
 
+        // Username validation
         if (username.length < 3) {
             isValid = false;
             messages.push('Username must be at least 3 characters long.');
@@ -42,14 +41,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
             feedbackDiv.style.color = '#dc3545';
             feedbackDiv.style.backgroundColor = '#ffbaba';
         }
-        console.log(isValid)
-        console.log(username.length)
-        console.log(password.length)
-        console.log(email.length)
-    
-    })
-
-  });
-  
-
-
+    });
+});
